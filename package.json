@@ -12,7 +12,10 @@
     "@truffle/hdwallet-provider": "^1.7.0",
     "ganache-cli": "^6.12.2",
     "mocha": "^9.2.2",
+    "next": "^12.3.4",
     "prompt-sync": "^4.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "solc": "^0.8.9",
     "web3": "^1.8.0"
   }
