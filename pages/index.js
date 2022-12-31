@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Card, Button } from "semantic-ui-react";
 import factory from "../ethereum/factory.js";
 import Layout from "../components/Layout.js";
-import 'semantic-ui-css/semantic.min.css'
 
 class CampaignIndex extends Component {
     static async getInitialProps() { //methodo globale di NextJs, chiamato prima del rendering del componente. Setta i props globali
@@ -27,12 +26,14 @@ class CampaignIndex extends Component {
         return (
         <Layout>
             <h3>Open Campaigns</h3>
-            {this.renderCampaigns()}
             <Button 
                 primary
+                floated="right"
                 content='Create a Campaign' 
                 icon='add circle' 
                 labelPosition='left' />
+
+            {this.renderCampaigns()}
         </Layout>
         );
     }
