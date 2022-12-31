@@ -16,11 +16,11 @@ beforeEach(async () => {
 
     factory = await new web3.eth.Contract(compiledFactory.abi)
             .deploy({ data: compiledFactory.evm.bytecode.object })
-            .send({ from: accounts[0], gas: '1400000' });
+            .send({ from: accounts[0], gas: '2000000' });
 
-    await factory.methods.createCampaign("100").send({
+    await factory.methods.createCampaign("100", "Project Name").send({
         from: accounts[0],
-        gas: "1000000",
+        gas: "1400000",
     });
 
     [campaignAddress] = await factory.methods.getDeployedCampaigns().call();
@@ -31,6 +31,11 @@ describe('Campaigns', () => {
     it('deploys a factory and a campaign', () => {
         assert.ok(factory.options.address);
         assert.ok(campaign.options.address);
+    });
+
+    it('check name of Campaign', async () => {
+        const nameCampaign = await campaign.methods.nameCampaign().call();
+        assert(nameCampaign);
     });
 
     it('check manager of campaign', async () => {

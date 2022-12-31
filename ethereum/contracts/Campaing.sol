@@ -4,8 +4,8 @@ pragma solidity ^0.8.9;
 contract CampaignFactory {
     address[] public deployedCampaigns;
 
-    function createCampaign(uint minimun) public {
-        address newCampaign = address(new Campaign(minimun, msg.sender));
+    function createCampaign(uint minimun, string memory nameCampaign) public {
+        address newCampaign = address(new Campaign(minimun, nameCampaign, msg.sender));
         deployedCampaigns.push(newCampaign);
     }
 
@@ -29,15 +29,17 @@ contract Campaign {
     mapping(address => bool) public approvers;
     Request[] public requests;
     uint public approversCount;
+    string public nameCampaign;
 
     modifier onlyManager() {
         require(msg.sender == manager);
         _;
     }
 
-    constructor(uint minimun, address creator) {
+    constructor(uint minimun, string memory name, address creator) {
         manager = creator;
         minimunContribution = minimun;
+        nameCampaign = name;
     }
 
     function contribute() public payable { //donare, contribuire al progetto
