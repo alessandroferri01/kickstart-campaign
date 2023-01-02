@@ -8,11 +8,13 @@ class CampaignNew extends Component {
     state = {
         minimunContribution: '',
         nameCampaign: '',
-        errorMessage: ''
+        errorMessage: '',
+        loading: false,
     }
 
     onSubmit = async (event) => {
         event.preventDefault();
+        this.setState({loading:true, errorMessage: ''})
 
         try {
             const accounts = await web3.eth.getAccounts();
@@ -20,10 +22,12 @@ class CampaignNew extends Component {
                 .createCampaign(this.state.minimunContribution, this.state.nameCampaign)
                 .send({
                     from: accounts[0],
-                });
+                }); //(*)
         } catch(err) {
             this.setState({ errorMessage: err.message });
         }
+
+        this.setState({loading:false}); //al fine della chiamata (*)
     }
 
     render() {
@@ -51,7 +55,7 @@ class CampaignNew extends Component {
                             required></Input>
                     </Form.Field>
                     <Message error header="Oops! Somethings went wrong!" content={this.state.errorMessage}/>
-                    <Button primary>Create!</Button>
+                    <Button loading={this.state.loading} primary>Create!</Button>
                 </Form>
             </Layout>
         )
