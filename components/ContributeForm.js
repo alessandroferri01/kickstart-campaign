@@ -9,7 +9,8 @@ class ContributeForm extends Component {
                 <label>Amount to Contribute</label>
                 <Input
                     label="ether"
-                    labelPosition="right" />
+                    labelPosition="right" 
+                    style={{marginBottom:'15px'}}/>
                 <Button primary>Contribute!</Button>
             </Form.Field>
         </Form> 

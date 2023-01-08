@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Layout from "../../components/Layout";
 import Campaign from "../../ethereum/campaign";
 import web3 from "../../ethereum/web3";
-import { Card, Header } from "semantic-ui-react";
+import { Card, Header, Grid } from "semantic-ui-react";
 import ContributeForm from '../../components/ContributeForm';
 
 class CampaignShow extends Component {
@@ -68,9 +68,15 @@ class CampaignShow extends Component {
         return (
             <Layout>
                 <h1>Campaign Show</h1>
-                <Header as='h2' color='green'>{this.props.nameCampaign}</Header>
-                {this.renderCards()}
-                <ContributeForm/>
+                <Grid>
+                    <Grid.Column width={11}>
+                        <Header as='h2' color='green'>{this.props.nameCampaign}</Header>
+                        {this.renderCards()}
+                    </Grid.Column>
+                    <Grid.Column width={5}>
+                        <ContributeForm/>
+                    </Grid.Column>
+                </Grid>
             </Layout>
         );
     }
