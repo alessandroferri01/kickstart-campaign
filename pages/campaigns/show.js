@@ -14,6 +14,7 @@ class CampaignShow extends Component {
         const nameCampaign = await campaign.methods.nameCampaign().call()
 
         return {
+            address,
             mininumContribution: summary[0],
             balance: summary[1],
             requestsCount: summary[2],
@@ -74,7 +75,7 @@ class CampaignShow extends Component {
                         {this.renderCards()}
                     </Grid.Column>
                     <Grid.Column width={5}>
-                        <ContributeForm/>
+                        <ContributeForm activeAddress={this.props.address}/>
                     </Grid.Column>
                 </Grid>
             </Layout>
